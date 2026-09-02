@@ -32,7 +32,9 @@ else:
 
 
 class VectorStoreIndexRegistry:
-    def __init__(self, vector_store_indexes: list[LiteLLM_ManagedVectorStoreIndex] = []):
+    def __init__(self, vector_store_indexes: list[LiteLLM_ManagedVectorStoreIndex] | None = None):
+        if vector_store_indexes is None:
+            vector_store_indexes = []
         self.vector_store_indexes: list[LiteLLM_ManagedVectorStoreIndex] = vector_store_indexes
 
     def get_vector_store_indexes(self) -> list[LiteLLM_ManagedVectorStoreIndex]:
