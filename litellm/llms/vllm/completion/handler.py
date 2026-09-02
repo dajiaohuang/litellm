@@ -107,7 +107,7 @@ def completion(
         return model_response
 
 
-def batch_completions(model: str, messages: list, optional_params=None, custom_prompt_dict={}):
+def batch_completions(model: str, messages: list, optional_params=None, custom_prompt_dict=None):
     """
     Example usage:
     import litellm
@@ -133,6 +133,8 @@ def batch_completions(model: str, messages: list, optional_params=None, custom_p
         ]
     )
     """
+    if custom_prompt_dict is None:
+        custom_prompt_dict = {}
     try:
         llm, SamplingParams = validate_environment(model=model)
     except Exception as e:
