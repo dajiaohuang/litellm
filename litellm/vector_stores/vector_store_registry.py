@@ -386,11 +386,13 @@ class VectorStoreRegistry:
         return vector_stores_to_run
 
     def _get_vector_store_ids_from_tool_calls(
-        self, tools: list[dict] | None = None, vector_store_ids: list[str] = []
+        self, tools: list[dict] | None = None, vector_store_ids: list[str] | None = None
     ) -> list[str]:
         """
         Returns the vector store ids from the tool calls
         """
+        if vector_store_ids is None:
+            vector_store_ids = []
         if tools:
             for tool in tools:
                 if "vector_store_ids" in tool:
